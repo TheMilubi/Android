@@ -16,6 +16,8 @@ import android.widget.EditText;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -85,14 +87,9 @@ public class MainActivity extends AppCompatActivity {
         String s = "";
         try {
             FileInputStream fis = openFileInput(fecha);
-            BufferedInputStream bis = new BufferedInputStream(fis);
-            byte[] r = new byte[1];
-            int leidos = bis.read(r);
-            while (leidos > 0){
-                s = s + new String(r);
-                leidos = bis.read(r);
-            }
-            bis.close();
+            DataInputStream dis = new DataInputStream(fis);
+            s = dis.readUTF();
+            dis.close();
             fis.close();
         }catch (IOException e){
             e.printStackTrace();
@@ -102,11 +99,11 @@ public class MainActivity extends AppCompatActivity {
     void escribir(String fecha){
         try {
             FileOutputStream fos = openFileOutput(fecha,MODE_PRIVATE);
-            BufferedOutputStream bos = new BufferedOutputStream(fos);
+            DataOutputStream dos = new DataOutputStream(fos);
             if (et.getText().toString().getBytes().length > 0){
-                bos.write(et.getText().toString().getBytes());
+                dos.writeUTF(et.getText().toString());
             }
-            bos.close();
+            dos.close();
             fos.close();
         }catch (IOException e){
             e.printStackTrace();
