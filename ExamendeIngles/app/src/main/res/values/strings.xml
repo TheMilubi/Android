@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Examen de Inglés</string>
+    <string-array name="respuestas">
+        <item>has</item>
+        <item>have</item>
+        <item>is</item>
+        <item>are</item>
+    </string-array>
+</resources>

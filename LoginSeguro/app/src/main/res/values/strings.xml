@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Login Seguro</string>
+    <string name="title_activity_usuario">usuario</string>
+    <string name="title_activity_admin">admin</string>
 </resources>
